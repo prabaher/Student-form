@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main >
+        <div class="head">STUDENT FORM</div>
+    <form action="">
+        <table class="first-table" border="1px">
+            <tr><td>Name</td>
+                <td><input id="name" type="text" placeholder="your name"></td>
+            </tr>
+            <tr><td>Age</td>
+                <td><input id="age" type="number" placeholder="your Age"></td>
+            </tr>
+            <tr><td>Gender</td>
+                <td>
+                    <input type="radio" id="radio1" name="Gender" value="male">male
+                    <input type="radio" id="radio2" name="Gender" value="female">female
+                </td>
+            </tr>
+            <tr>
+                <td>Course</td>
+                <td>
+                <select name="course" id="course">
+                    <option value="python">python</option>
+                    <option value="frontend">frontend</option>
+                    <option value="backend">backend</option>
+                    <option value="figma">figma</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E_mail
+                </td>
+                <td ><input type="email" id="email" placeholder="your mail id      @gmail.com"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button id="savebutton" onclick="save()">save</button>
+                    
+                </td>
+            </tr>
+        </table>
+    </form>    
+    </main>
+
+    <section class="result">
+        <table class="second-table" id="secondtable" border="2px">
+            <tr>
+                
+                <td>Name</td>
+                <td>Age</td>
+                <td>Gender</td>
+                <td>Course</td>
+                <td>E-mail</td>
+                <td>Action</td>
+            </tr>
+        </table>
+    </section>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
