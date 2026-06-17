@@ -1,84 +1,72 @@
-var n=document.getElementById("name")
-var a=document.getElementById("age")
-var e=document.getElementById("email")
-var c=document.getElementById("course")
-var r1=document.getElementById("radio1")
-var r2=document.getElementById("radio2")
+var nameInput = document.getElementById("name")
+var ageInput = document.getElementById("age")
+var emailInput = document.getElementById("email")
+var courseInput = document.getElementById("course")
+var maleRadio = document.getElementById("radio1")
+var femaleRadio = document.getElementById("radio2")
+var resultTableByClass = document.querySelector(".second-table")
+var resultTable = document.getElementById("secondtable")
 
-
-var st=document.querySelector(".second-table")
-var nt=document.getElementById("secondtable")
 function save(){
-
-    // st.style.display="block"
-
-    var ntr=document.createElement("tr")
-    
-    var nn=document.createElement("td")
-    nn.textContent=n.value
-    ntr.append(nn)
-    nt.append(ntr)
-
-    var na=document.createElement("td")
-    na.textContent=a.value
-    ntr.append(na)
-    nt.append(ntr)
-
-    var nr=document.createElement("td")
-    if (r1.checked == true){
-        nr.textContent=r1.value
-        ntr.append(nr)
-        nt.append(ntr)
+    if(nameInput.value.trim() === "" || ageInput.value.trim() === "" || emailInput.value.trim() === "" || (!maleRadio.checked && !femaleRadio.checked)){
+        alert("Please fill all the inputs");
+        return;
     }
-    if(r2.checked == true){
-        nr.textContent=r2.value
-        ntr.append(nr)
-        nt.append(ntr)
+
+    var newRow = document.createElement("tr")
+
+    var nameCell = document.createElement("td")
+    nameCell.textContent = nameInput.value
+    newRow.append(nameCell)
+
+    var ageCell = document.createElement("td")
+    ageCell.textContent = ageInput.value
+    newRow.append(ageCell)
+
+    var genderCell = document.createElement("td")
+    if (maleRadio.checked == true){
+        genderCell.textContent = maleRadio.value
     }
-    else{
-        nr.textcontent="select gender"
-        ntr.append(nr)
-        nt.append(ntr)
+    else if(femaleRadio.checked == true){
+        genderCell.textContent = femaleRadio.value
     }
-    var nc=document.createElement("td")
-    nc.textContent=c.value
-    ntr.append(nc)
-    nt.append(ntr)
+    newRow.append(genderCell)
 
-    var ne=document.createElement("td")
-    ne.textContent=e.value+"@gmail.com"
-    ntr.append(ne)
-    nt.append(ntr)
+    var courseCell = document.createElement("td")
+    courseCell.textContent = courseInput.value
+    newRow.append(courseCell)
 
-    var nb=document.createElement("td")
-    nb.innerHTML="<button class='delbtn'>delete</button>"
-    ntr.append(nb)
-    nt.append(ntr)
+    var emailCell = document.createElement("td")
+    emailCell.textContent = emailInput.value
+    newRow.append(emailCell)
 
+    var actionCell = document.createElement("td")
+    actionCell.innerHTML = "<button class='delbtn'>delete</button>"
+    newRow.append(actionCell)
+
+    resultTable.append(newRow)
     clearitem();
 }
-var savebutton=document.getElementById("savebutton")
 
-savebutton.addEventListener("click",function(event){
+var saveButton = document.getElementById("savebutton")
+saveButton.addEventListener("click", function(event){
     event.preventDefault()
 })
 
-nt.addEventListener("click" , del);
-
-
-function del(e){
-        if(!e.target.classList.contains("delbtn")){
-            return;
-        }
-        const btn=e.target;
-        btn.closest("tr").remove();
-        
+resultTable.addEventListener("click", deleteRow);
+function deleteRow(event){
+    if(!event.target.classList.contains("delbtn")){
+        return;
     }
-
+    var deleteButton = event.target;
+    deleteButton.closest("tr").remove();
+}
 
 function clearitem(){
-    document.getElementById("name").value=""
-    document.getElementById("age").value=""
-    document.getElementById("email").value=""
-    document.getElementById("course").value=""
+    nameInput.value = ""
+    ageInput.value = ""
+    emailInput.value = ""
+    courseInput.value = ""
+    maleRadio.checked = false
+    femaleRadio.checked = false
 }
